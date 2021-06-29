@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Létrehozás</title>
+</head>
+
+<body>
+
+
+
+    <h2>Jegyzet hozzáadása</h2>
+    <form method="POST" action="/letrehozas">
+        <div>
+            <label for="szoveg">Szöveg: </label>
+            <input type="text" id="szoveg" name="szoveg"></input>
+        </div>
+        <div style="margin-top: 5px;">
+            <button type="submit">Hozzáadás</button>
+        </div>
+    </form>
+
+    <br>
+    <a href="http://localhost:3000">Főoldal</a>
+    <a href="http://localhost:3000/lista">Lista</a>
+
+</body>
+<style>
+    button {
+        cursor: pointer;
+    }
+</style>
+
+</html>

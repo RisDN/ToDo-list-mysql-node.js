@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista</title>
+</head>
+<script>
+    var formazatlanAdat = '<%- JSON.stringify(adat) %>'
+    var adat = JSON.parse(formazatlanAdat)
+</script>
+
+<body>
+    <div>
+        <h2>Feladatok</h2>
+        <table>
+            <tr>
+                <th>Azonosító</th>
+                <th>Szöveg</th>
+                <th>Kész állapot</th>
+                <th>Művelet</th>
+            </tr>
+            <%
+    if (adat.length != 0){
+    var i = 1;
+    adat.forEach(function(beillesztAdat){
+    %>
+                <tr>
+                    <% if(beillesztAdat.Keszenvan == 'Nem'){ %>
+                        <td class="nincsenkeszen">
+                            <%=i %>
+                        </td>
+                        <% } else{ %>
+                            <td class="keszenvan">
+                                <%=i %>
+                            </td>
+                            <% } %>
+                                <td>
+                                    <%=beillesztAdat.Szoveg %>
+                                </td>
+                                <td>
+                                    <%=beillesztAdat.Keszenvan %>
+                                </td>
+                                <td>
+                                    <form method="POST" action="/torles">
+                                        <button class="torlesgomb" type="submit" name="torles" value="<%=beillesztAdat.Azonosito %>">Törlés</button>
+                                    </form>
+                                    <form method="POST" action="/kesz">
+                                        <button class="muveletigomb" type="submit" name="kesz" value="<%=beillesztAdat.Azonosito %>">Váltás</button>
+                                    </form>
+                                </td>
+                </tr>
+                <% i++;}) %>
+                    <% } else{ %>
+                        <tr>
+                            <td colspan="4">Nincsenek feladatok</td>
+                        </tr>
+                        <% } %>
+        </table>
+        <a href="http://localhost:3000">Főoldal</a>
+        <a href="http://localhost:3000/letrehozas">Létrehozás</a>
+    </div>
+</body>
+
+<style>
+    body {
+        background-color: lavender;
+    }
+    
+    div {
+        margin: 0 auto;
+        align-items: center;
+        text-align: center;
+    }
+    
+    table {
+        border-collapse: collapse;
+        border: 1px solid black;
+        background-color: rgb(246, 248, 246);
+        margin: 0 auto;
+        align-items: center;
+        text-align: center;
+    }
+    
+    td,
+    tr,
+    th {
+        border: 1px solid black;
+    }
+    
+    th {
+        width: 75px;
+        font-size: 18px;
+    }
+    
+    .keszenvan {
+        color: green;
+    }
+    
+    .nincsenkeszen {
+        color: rgb(241, 65, 65);
+    }
+    
+    button {
+        cursor: pointer;
+        margin: 2px;
+        width: 55px;
+        border-radius: 2px;
+        border-color: rgb(148, 146, 146);
+    }
+    
+    .keszgombIgen {
+        color: red;
+    }
+    
+    th {
+        background-color: rgb(199, 195, 195);
+    }
+</style>
+
+</html>
